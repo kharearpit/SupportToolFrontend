@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages>
+  
+  <tab>
+  	<title>HDFS</title>
+  	<flag>1</flag>
+  </tab>		
+  
+  <tab>
+  	<title>HBASE</title>
+ 	 <flag>0</flag>
+  </tab>
+
+  <tab>
+  	<title>AMBARI</title>
+ 	 <flag>0</flag>
+  </tab>
+  
+  <tab>
+  	<title>TEZ</title>
+ 	 <flag>0</flag>
+  </tab>
+  
+  <tab>
+  	<title>HIVE</title>
+ 	 <flag>0</flag>
+  </tab>
+  
+  <tab>
+  	<title>ZOOKEEPER</title>
+ 	 <flag>0</flag>
+  </tab>
+  
+  <tab>
+  	<title>MAPREDUCE</title>
+ 	 <flag>0</flag>
+  </tab>
+  
+  <tab>
+  	<title>VERSION-CHECK</title>
+ 	 <flag>1</flag>
+  </tab>
+
+</pages>
