@@ -1,0 +1,143 @@
+<div id="page-wrapper">
+          
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">CREATE CLUSTER	</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           <!-- Code snippet3 -->
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-edit fa-fw"></i> Download files to create the cluster 
+                            <div class="pull-right">
+                                
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body" ng-controller="createClusterController">
+                           <form name="createCluster" novalidate>
+                           <table>
+                           
+                           <tr>
+                           		<td><Label>Cluster Name</label></td>
+                           		<td style="padding-right: 20px"></td>
+                           		<td><Label>OS Type</label></td>
+                           </tr>
+                           <tr>
+                           		<td><input type="text" class="form-control" name = "cluster_name" ng-model="cluster_name" placeholder="Enter Cluster Name" ng-minlength = "1" required></td>
+                           		<td style="padding-right: 40px"></td>
+                           		<td><select class="form-control" ng-model="selectedOS" id="text-one">
+            					
+            						<option value="centos6">Centos 6</option>
+            						<option value="centos7">Centos 7</option></select></td>
+                           </tr>
+                           <tr><td><br></td><td><br></td></tr>
+                           
+                           
+                           
+                           <tr>
+                           		<td><Label>Ambari Version</label></td>
+                           		<td style="padding-right: 20px"></td>
+                           		<td><Label>HDP Version</label></td>
+                           </tr>
+                           <tr><td><select class="form-control" ng-model="selectedAmbariVersion" id="text-two" style="display: none;">
+            						
+        							</select></td>
+        				   <td style="padding-right: 40px"></td>
+        				   <td><select class="form-control" ng-model="selectedHDPVersion" id="text-three" style="display: none;">
+            					
+        						</select></td>
+                           </tr>
+                           <tr><td><br></td><td><br></td></tr>
+                           
+                           <tr>
+                           <td><Label>Domain Name</label></td>
+                           <td style="padding-right: 20px"></td>
+                           <td><label>Default Password</label></td>
+                           </tr>
+                           <tr>
+                           <td><input type="text" class="form-control" name = "domain_name" ng-model="domain_name" placeholder="Enter Domain Name" ng-minlength = "1" required></td>
+                           <td style="padding-right: 20px"></td>
+                           <td><input type="password" class="form-control" name = "default_password" ng-model="default_password" placeholder="Enter Default Password" ng-minlength = "1" required></td>
+                           <tr><td><br></td><td><br></td></tr>
+                           
+                           <td><Label>Number of Nodes</label></td>
+                           <td style="padding-right: 20px"></td>
+                           <td><label>Host Names (comma seperated)</label></label></td>
+                           </tr>
+                           <tr>
+                           <td><input type="number" class="form-control" name = "node_count" ng-model="node_count" placeholder="Enter number of nodes" ng-minlength = "1" required></td>
+                           <td style="padding-right: 20px"></td>
+                           <td><textarea class="form-control" rows="2" ng-model="host_names"></textarea></td>
+                           <tr><td><br></td><td><br></td></tr>
+                           <tr><td><button  type="submit" ng-click="submitClusterDetail()" class="btn btn-default" id="submit">Submit</button></td><td></td><td></td></tr>
+                           </table>
+                           </form>
+                           
+                           <br>
+                           <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Tags/Branches</th>
+                                            <th>Comments</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX" ng-repeat = "v in version track by $index">
+                                            <td>{{v.tag}}</td>
+                                            <td>{{v.comments}}</td>
+                                            
+                                        </tr>
+
+                                        
+                                    </tbody>
+                                </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                 
+                </div>
+
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                    <!-- Code Snippet 4-->
+                    
+                    <!-- /.panel -->
+                    <div class="chat-panel panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i>
+                            Getting Started Video
+                            <div class="btn-group pull-right">
+                                
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="chat">
+
+                                    <div class="embed-responsive embed-responsive-16by9" >
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jEJ6lH5ZsuM" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+
+                            </ul>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            
+                        </div>
+                        
+                        <!-- /.panel-footer -->
+                    </div>
+                    <!-- /.panel .chat-panel -->
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>

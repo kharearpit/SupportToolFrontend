@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script>
+    $(function() {
+       $("#text-one").change(function() {
+           if(this.value != 'base'){
+                $.get( "textdata/" + this.value + ".txt", function(data) {
+                    $("#text-two").html( data ).show();
+                });
+                
+                $.get( "textdata/" +this.value+"-hdp.txt", function(data) {
+                    $("#text-three").html( data ).show();
+                });
+           }else{
+                $("#text-two").hide();
+                $("#text-three").hide();
+           }
+           
+     
+           
+           
+        });
+    });
+</script>
+</head>
+<body>
+    <div id="page-wrap">
+        Select OS
+        <select id="text-one">
+            <option selected value="base">Select OS</option>
+            <option value="centos6">Centos 6</option>
+            <option value="centos7">Centos 7</option>
+        </select>
+        <br />
+        Select Ambari Version
+        <select id="text-two" style="display: none;">
+            <option>Please choose from above</option>
+        </select>
+        <br />
+        Select HDP Version
+        <select id="text-three" style="display: none;">
+            <option>Please choose from above</option>
+        </select>
+		
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<option value="2.4.2.0">HDP-2.4.2.0</option>
+<option value="2.4.0.0">HDP-2.4.0.0</option>
+<option value="2.3.6.0">HDP-2.3.6.0</option>
+<option value="2.3.4.7">HDP-2.3.4.7</option>
+<option value="2.3.4.0">HDP-2.3.4.0</option>
+<option value="2.3.2.0">HDP-2.3.2.0</option>
+<option value="2.3.0.0">HDP-2.3.0.0</option>
+<option value="2.2.9.0">HDP-2.2.9.0</option>
+<option value="2.2.8.0">HDP-2.2.8.0</option>
+<option value="2.2.6.0">HDP-2.2.6.0</option>
+<option value="2.2.4.8">HDP-2.2.4.8</option>
+<option value="2.2.4.2">HDP-2.2.4.2</option>
+<option value="2.2.0.0">HDP-2.2.0.0</option>

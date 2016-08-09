@@ -10,7 +10,9 @@
     <meta name="author" content="">
 
     <title>Hortonworks Support Tool </title>
-
+    
+    <link rel="shortcut icon" href="/SupportTool/images/favicon.ico"/>
+	
     <!-- Bootstrap Core CSS -->
     <link href="/SupportTool/css/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,22 +31,17 @@
     <!-- Custom Fonts -->
     <link href="/SupportTool/css/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
    <script src="http://code.angularjs.org/1.5.6/angular-route.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
- 	<!--  <script src="../../angular_controller/js/angular.js" ></script> 
-    <script src="../../angular_controller/js/angular-route.js" ></script>  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  
     <script src="/SupportTool/angular_controller/js/routes.js" ></script>  
 </head>
 
 <body ng-app="tool" onload="loadXMLDoc()">
-
+	<div id="progressBar"></div>
+	
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -53,157 +50,24 @@
                 
                <table><tr><td><a class="navbar-brand" href="#"><img src="/SupportTool/images/hortonworks-logo.png" height="30" width="80"></td><td align="right"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="4">Hortonworks Support Tool</font></strong></td></tr></table></a>
             </div>
-            <!-- /.navbar-header -->
-
-            
-            <!-- code snippet -->
-            
-            <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="menu"></ul>
-                  <!--   <ul class="nav" id="menuAdd"> <!-- id=side-menu 
-                        
-                        <li>
-                            <a href="#hdfs"><i class="fa fa-clipboard fa-fw"></i> HDFS</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#hbase"><i class="fa fa-database fa-fw"></i> HBASE</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#ambari"><i class="fa fa-dashboard fa-fw"></i> AMBARI</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#hive"><i class="fa fa-list-alt fa-fw"></i> HIVE</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#zookeeper"><i class="fa fa-link fa-fw"></i> ZOOKEEPER</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#tez"><i class="fa fa-gears fa-fw"></i> TEZ</a>
-                        </li>
-                        
-                        <li>
-                        	<a href="#mapreduce"><i class="fa fa-files-o fa-fw"></i> MAP REDUCE</a>
-                        </li>
-                        
-                        <!-- <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level 
-                        </li> 
-                        
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        -->
-                        
-                        
-                        
-                        <!--
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level 
-                        </li>
-                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    
-                                </li>
-                                <!-- /.nav-third-level 
-                            </ul> -->
-                            <!-- /.nav-second-level 
-                        </li>
-                         
-                        
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level 
-                        </li>
-                        
-                         -->
-                    </ul>
+				</ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-	
-        <!-- /#page-wrapper -->
 
-    </div>
     <div class="view-class">
     <div ng-view></div>
 	 </div>
     <!-- /#wrapper -->
 <div class="footer">Copyright © Hortonworks, Inc. 2016</div>
+</div>
+
     <!-- jQuery -->
     <script src="/SupportTool/css/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -245,6 +109,9 @@ function myFunction(xml) {
   }
   document.getElementById("menu").innerHTML = ul;
 }
+
+
+
 </script>
 
 </body>

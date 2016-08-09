@@ -40,5 +40,10 @@
   	<title>VERSION-CHECK</title>
  	 <flag>1</flag>
   </tab>
+  
+  <tab>
+  	<title>CREATE-CLUSTER</title>
+ 	 <flag>0</flag>
+  </tab>
 
 </pages>
