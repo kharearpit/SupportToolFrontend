@@ -1,3 +1,4 @@
+<option selected value="0">Select Ambari Version</option>
 <option value="2.0.0">Ambari-2.0.0</option>
 <option value="2.0.1">Ambari-2.0.1</option>
 <option value="2.0.2">Ambari-2.0.2</option>
@@ -9,3 +10,4 @@
 <option value="2.2.1.0">Ambari-2.2.1.0</option>
 <option value="2.2.1.1">Ambari-2.2.1.1</option>
 <option value="2.2.2.0">Ambari-2.2.2.0</option>
+<option value="2.2.2.2-2">Ambari-2.2.2.2-2</option>

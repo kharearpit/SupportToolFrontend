@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('tool', ['ngRoute','ngSanitize']);
+var app = angular.module('tool', ['ngRoute','ngSanitize','ui.bootstrap']);
 
 app.config(function($routeProvider) {
 	
@@ -93,6 +93,9 @@ app.controller('hdfsController',function($scope,$http){
 		$("#wrapper").fadeOut();
     	progressBar();
     	
+    	//display result after response appears
+    	document.getElementById("command").style.display='block';
+    	
 		var uploadUrl="http://172.26.64.107:8080/hortonworks/support-tool/v1/upload";
 		var formData=new FormData();
 		formData.append("file",file.files[0]);
@@ -139,7 +142,29 @@ app.controller('mapreduceController',function($scope,$http){
 });
 
 app.controller('createClusterController',function($scope,$http){
-	//alert("hi");
+	
+	//progress bar code begins
+	function progressBar(){
+		var bar='<div id="progress"><div id="bar"><div id="displayspace">0%</div></div><p class="text-center"><br><br><br><br><font size = "5" color="#333333"><b>Please wait while we process your request</b></font><br><br><br><br><br><img src="/SupportTool/images/processing.gif" alt="Smiley face" height="200" width="200"></p></div>'
+			document.getElementById("progressBar").innerHTML=bar;
+		var newBar=document.getElementById("bar");
+		var width=0;
+		var frames=setInterval(frame,5);
+		function frame(){
+			if(width>=100){
+				clearInterval(frames);
+				$('#progress').fadeOut();
+				$("#wrapper").fadeIn();
+				
+			} else{
+				width++;
+				newBar.style.width=width+'%';
+				document.getElementById("displayspace").innerHTML=width*1+'%';
+			}
+			}
+		}
+	//ends
+	
 	$(function() {
 	       $("#text-one").change(function() {
 	           if(this.value != 'base'){
@@ -150,9 +175,17 @@ app.controller('createClusterController',function($scope,$http){
 	                $.get( "css/pages/textdata/" +this.value+"-hdp.txt", function(data) {
 	                    $("#text-three").html( data ).show();
 	                });
+	                
+	                $.get( "css/pages/textdata/" +this.value+"-Utils-Version.txt", function(data) {
+	                    $("#text-four").html( data ).show();
+	                });
+	                
+	                
 	           }else{
 	                $("#text-two").hide();
 	                $("#text-three").hide();
+	                $("#text-four").hide();
+	                
 	           }
 	           
 
@@ -162,6 +195,10 @@ app.controller('createClusterController',function($scope,$http){
 	
 	
 	$scope.submitClusterDetail = function () {
+		$("#wrapper").fadeOut();
+    	progressBar();
+    	
+    	document.getElementById("command").style.display='block';
     	
 		var cluster_name=$scope.cluster_name;
 		var os_type=$scope.selectedOS;
@@ -171,51 +208,72 @@ app.controller('createClusterController',function($scope,$http){
 		var default_password=$scope.default_password;
 		var nodes_count=$scope.node_count;
 		var host_names=$scope.host_names;
+		var utils_version=$scope.selectedUtilVersion;
+		var flavor_name=$scope.selectedFlavor;
+		var keypair_name=$scope.keypair_name;
+		var pvt_keyfile=$scope.pvt_keyfile;
+		var project_name=$scope.selectedProjectName;
+		var okta_id=$scope.okta_id;
 		
-		alert(" "+"cluster_name: "+cluster_name+
+		/*alert(" "+"cluster_name: "+cluster_name+
 				" "+"os_type: "+os_type+
 				" "+"ambari_version: "+ambari_version+
 				" "+"cluster_version: "+cluster_version+
 				" "+"domain_name: "+domain_name+
 				" "+"default_password: "+default_password+
 				" "+"nodes_count: "+nodes_count+
-				" "+"host_names: "+host_names);
+				" "+"utils_version: "+utils_version+
+				" "+"flavor_name: "+flavor_name+
+				" "+"keypair_name: "+keypair_name+
+				" "+"pvt_keyfile: "+pvt_keyfile+
+				" "+"project_name: "+project_name+
+				" "+"okta_id: "+okta_id+
+				" "+"host_names: "+host_names); */
     	
     	//Make a request packet
         var request = {
             method: 'POST',
-            url: 'http://172.26.64.202:8080/hortonworks/support-tool/v1/createCluster',
-            headers: {'Content-Type': 'application/json'},
+            url: 'http://172.26.64.202:8050/hortonworks/support-tool/v1/createCluster',
+            //headers: {'Content-Type': 'application/json'},
+            responseType:'arraybuffer',
             data: JSON.stringify({'cluster_name':cluster_name,
+            //params: {'cluster_name':cluster_name,
             	     'os_type':os_type,
             	     'ambari_version':ambari_version,
             	     'cluster_version':cluster_version,
             	     'domain_name':domain_name,
             	     'default_password':default_password,
             	     'nodes_count':nodes_count,
-            	     'host_names':host_names})
+            	     'host_names':host_names,
+            	     'utils_version':utils_version,
+            	     'flavor_name':flavor_name,
+            	     'keypair_name':keypair_name,
+            	     'pvt_keyfile':pvt_keyfile,
+            	     'project_name':project_name,
+            	     'okta_id':okta_id})
         };
            //send the request
     	   $http(request)
     	   .then(function(response) {
     		   
     		   var a = document.createElement('a');
-    		   var blob = new Blob([response], {'type':"application/octet-stream"});
+    		   var blob = new Blob([response.data]);
     		   a.href = URL.createObjectURL(blob);
     		   a.download = "Hortonworks.zip";
     		   a.click();
     		   
-    		   //$scope.result=response.data;
-    		    
-    		    
+
     	   }, 
     	   function(response) {
     		   window.location = 'css/pages/503.html';
     	   });
     	   
+    	   
+    	   
     } 
 	
 });
+app.$inject = ['$scope'];//set default value in text box
 
 app.controller('versionCheckController',function($scope,$http){
 
@@ -240,10 +298,12 @@ app.controller('versionCheckController',function($scope,$http){
 			}
 
 		//set the select box menu
-	    $scope.components_names = ["HADOOP","HBASE","HIVE"];
+	    $scope.components_names = ["HADOOP","HBASE","HIVE","HDFS"];
 	    $scope.submitApacheJiraID = function () {
 	    	$("#wrapper").fadeOut();
 	    	progressBar();
+	    	//display result after response appears
+	    	document.getElementById("command").style.display='block';
 	    	
 	    	var components = $scope.selectedComponent;
 	    	var jira_id=$scope.jira_id;
