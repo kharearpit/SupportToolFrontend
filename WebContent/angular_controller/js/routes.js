@@ -53,6 +53,7 @@ app.config(function($routeProvider) {
               
           }
 );
+//uploading the file
 app.directive('validFile',function(){
 	  return {
 	    require:'ngModel',
@@ -99,6 +100,7 @@ app.controller('hdfsController',function($scope,$http){
 		var uploadUrl="http://172.26.64.107:8080/hortonworks/support-tool/v1/upload";
 		var formData=new FormData();
 		formData.append("file",file.files[0]);
+		
 		 $http({
 		        method: 'POST',
 		        url: uploadUrl,
@@ -164,7 +166,7 @@ app.controller('createClusterController',function($scope,$http){
 			}
 		}
 	//ends
-	
+	//dynamically populating the select boxes using txt files
 	$(function() {
 	       $("#text-one").change(function() {
 	           if(this.value != 'base'){
@@ -193,7 +195,7 @@ app.controller('createClusterController',function($scope,$http){
 	    });
 	
 	
-	
+	//controller to submit the cluster properties
 	$scope.submitClusterDetail = function () {
 		$("#wrapper").fadeOut();
     	progressBar();
@@ -261,19 +263,16 @@ app.controller('createClusterController',function($scope,$http){
     		   a.href = URL.createObjectURL(blob);
     		   a.download = "Hortonworks.zip";
     		   a.click();
-    		   
 
     	   }, 
     	   function(response) {
     		   window.location = 'css/pages/503.html';
     	   });
     	   
-    	   
-    	   
     } 
 	
 });
-app.$inject = ['$scope'];//set default value in text box
+app.$inject = ['$scope'];//set default value in text boxes
 
 app.controller('versionCheckController',function($scope,$http){
 
